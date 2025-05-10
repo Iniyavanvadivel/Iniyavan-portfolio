@@ -2,27 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>INIYAVAN V | Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --bg-dark: linear-gradient(135deg, #1f1c2c, #928DAB);
-      --bg-light: #f7f7f7;
+      --accent: #00ffe7;
+      --hover: #ff4dff;
+      --bg-dark: #121212;
+      --bg-light: #f4f4f4;
       --text-dark: #ffffff;
       --text-light: #111;
-      --accent-color: #00ffe7;
-      --hover-color: #ff4dff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
     }
 
     body {
-      margin: 0;
       font-family: 'Poppins', sans-serif;
+      display: flex;
       background: var(--bg-dark);
       color: var(--text-dark);
-      overflow-x: hidden;
-      transition: background 0.5s, color 0.5s;
+      transition: 0.3s;
     }
 
     body.light-mode {
@@ -30,214 +36,195 @@
       color: var(--text-light);
     }
 
-    header {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      text-align: center;
+    nav {
+      width: 220px;
+      background: #1c1c1c;
+      padding: 30px 20px;
+      position: fixed;
+      height: 100vh;
+    }
+
+    nav h1 {
       font-family: 'Orbitron', sans-serif;
-      position: relative;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      color: var(--accent);
     }
 
-    .toggle-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
+    nav ul {
+      list-style: none;
+    }
+
+    nav ul li {
+      margin: 15px 0;
+    }
+
+    nav ul li a {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 500;
+      display: block;
+    }
+
+    nav ul li a:hover {
+      color: var(--hover);
+    }
+
+    nav .toggle-btn {
+      margin-top: 30px;
       cursor: pointer;
-      color: var(--accent-color);
+      background: none;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      border-radius: 8px;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin: 0;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7; }
-      to { text-shadow: 0 0 20px #ff4dff, 0 0 30px #ff4dff; }
+    main {
+      margin-left: 220px;
+      padding: 40px 20px;
+      width: 100%;
+      max-width: 1000px;
     }
 
     section {
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: auto;
+      margin-bottom: 60px;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+      color: var(--accent);
     }
 
     .project {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
       padding: 20px;
-      margin-bottom: 30px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-      transition: transform 0.3s, box-shadow 0.3s;
-      perspective: 1000px;
-    }
-
-    .project:hover {
-      transform: rotateY(3deg) scale(1.03);
-      box-shadow: 0 10px 30px rgba(0, 255, 231, 0.4);
+      border-radius: 10px;
+      margin-top: 10px;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.4);
       font-size: 0.9rem;
+      padding: 20px;
+      margin-top: 50px;
     }
 
     a {
-      color: var(--accent-color);
-      text-decoration: none;
+      color: var(--accent);
     }
 
     a:hover {
-      color: var(--hover-color);
+      color: var(--hover);
     }
 
-    #particles-js {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
+    body.light-mode nav {
+      background: #ddd;
+    }
+
+    body.light-mode nav h1,
+    body.light-mode nav ul li a {
+      color: var(--text-light);
     }
 
     body.light-mode .project {
       background: rgba(0, 0, 0, 0.05);
     }
 
-    body.light-mode .close,
-    body.light-mode i,
-    body.light-mode .project h3 {
-      color: var(--text-light);
+    @media (max-width: 768px) {
+      nav {
+        position: relative;
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      nav ul {
+        display: flex;
+        gap: 20px;
+      }
+
+      main {
+        margin-left: 0;
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <div id="particles-js"></div>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script>
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 60 },
-        size: { value: 3 },
-        color: { value: ["#00ffe7", "#ff4dff"] },
-        line_linked: {
-          enable: true,
-          distance: 150,
-          color: "#ffffff",
-          opacity: 0.4,
-          width: 1
-        },
-        move: {
-          enable: true,
-          speed: 2
-        }
-      }
-    });
-  </script>
 
-  <header>
-    <h1>INIYAVAN V</h1>
-    <p>B.E - Electronics and Communication Engineering</p>
-    <button class="toggle-btn" onclick="toggleMode()" id="modeToggle">🌙</button>
-  </header>
-
-  <section>
-    <h2>About Me</h2>
-    <p>I am a passionate ECE student currently pursuing my B.E at Erode Sengunthar Engineering College. My interests include VLSI, Analog Electronics, and Digital Signal Processing. I am enthusiastic about learning and love participating in workshops and hands-on projects that challenge me to grow.</p>
-  </section>
-
-  <section>
-    <h2>Projects</h2>
-    <div class="project">
-      <h3>Home Automation Using Voice Control</h3>
-      <p>A system that allows users to manage home devices like lights, thermostats, and security systems using voice commands. Enhances energy efficiency and connectivity.</p>
+  <nav>
+    <div>
+      <h1>INIYAVAN V</h1>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
-  </section>
+    <button class="toggle-btn" onclick="toggleMode()">Toggle Mode</button>
+  </nav>
 
-  <section>
-    <h2>Achievements</h2>
-    <ul>
-      <li>Workshop on Artificial Intelligence – NoviTech R&D (Sep 2023)</li>
-      <li>Workshop on Industry 5.0 – VIT Vellore</li>
-      <li>Workshop on AI in UAV Technology – Excel Engineering College</li>
-    </ul>
-  </section>
+  <main>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>I am a passionate ECE student currently pursuing my B.E at Erode Sengunthar Engineering College. My interests include VLSI, Analog Electronics, and Digital Signal Processing. I am enthusiastic about learning and love participating in workshops and hands-on projects that challenge me to grow.</p>
+    </section>
 
-  <section>
-    <h2>Skills</h2>
-    <ul>
-      <li>Basic Python</li>
-      <li>Basic C Programming</li>
-    </ul>
-  </section>
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="project">
+        <h3>Home Automation Using Voice Control</h3>
+        <p>A system that allows users to manage home devices like lights, thermostats, and security systems using voice commands. Enhances energy efficiency and connectivity.</p>
+      </div>
+    </section>
 
-  <section>
-    <h2>Education</h2>
-    <p><strong>B.E., Electronics and Communication Engineering</strong><br />Erode Sengunthar Engineering College (2022 – 2026), CGPA: 7.8 (up to 4th sem)</p>
-    <p><strong>HSC</strong> – Green Park Matric Hr. Sec. School (2022): 66.6%</p>
-    <p><strong>SSLC</strong> – Green Park Matric Hr. Sec. School (2020): 97%</p>
-  </section>
+    <section id="achievements">
+      <h2>Achievements</h2>
+      <ul>
+        <li>Workshop on Artificial Intelligence – NoviTech R&D (Sep 2023)</li>
+        <li>Workshop on Industry 5.0 – VIT Vellore</li>
+        <li>Workshop on AI in UAV Technology – Excel Engineering College</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>Contact</h2>
-    <p><i class="fas fa-envelope"></i> <a href="mailto:iniyavanvadivel@gamil.com">iniyavanvadivel@gamil.com</a></p>
-    <p><i class="fas fa-phone"></i> <a href="tel:9342610361">9342610361</a></p>
-  </section>
+    <section id="skills">
+      <h2>Skills</h2>
+      <ul>
+        <li>Basic Python</li>
+        <li>Basic C Programming</li>
+      </ul>
+    </section>
 
-  <footer>
-    <p>© 2025 INIYAVAN V. All rights reserved.</p>
-  </footer>
+    <section id="education">
+      <h2>Education</h2>
+      <p><strong>B.E., Electronics and Communication Engineering</strong><br/>Erode Sengunthar Engineering College (2022 – 2026), CGPA: 7.8 (up to 4th sem)</p>
+      <p><strong>HSC</strong> – Green Park Matric Hr. Sec. School (2022): 66.6%</p>
+      <p><strong>SSLC</strong> – Green Park Matric Hr. Sec. School (2020): 97%</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:iniyavanvadivel@gamil.com">iniyavanvadivel@gamil.com</a></p>
+      <p><i class="fas fa-phone"></i> <a href="tel:9342610361">9342610361</a></p>
+    </section>
+
+    <footer>
+      <p>© 2025 INIYAVAN V. All rights reserved.</p>
+    </footer>
+  </main>
 
   <script>
     function toggleMode() {
       document.body.classList.toggle("light-mode");
-      const toggleBtn = document.getElementById("modeToggle");
-      toggleBtn.textContent = document.body.classList.contains("light-mode") ? "🌞" : "🌙";
     }
   </script>
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
 </body>
 </html>
